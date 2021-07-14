@@ -20,7 +20,7 @@ class MyClient(discord.Client):
             return
             
 
-        if message.content.lower().startswith("/p") or message.content.lower().startswith("/price"):
+        if message.content.lower().startswith("?p") or message.content.lower().startswith("?price"):
             print(message.content)
             print(message.content.split())
             symbol = message.content.split()[1]
