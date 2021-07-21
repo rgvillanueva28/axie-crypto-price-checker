@@ -21,9 +21,7 @@ class MyClient(discord.Client):
             
 
         if message.content.lower().startswith("?p") or message.content.lower().startswith("?price"):
-            print(message.content)
-            print(message.content.split())
-            symbol = message.content.split()[1]
+            symbol = message.content.lower().split()[1]
             index = next((i for i, item in enumerate(all_tokens_json) if item["symbol"] == symbol), None)
 
             if index != None:
@@ -35,7 +33,7 @@ class MyClient(discord.Client):
                 price = "{:,.8f}".format(response_json[id]["usd"]).rstrip("0").rstrip(".") 
                 php = "{:,.8f}".format(response_json[id]["php"]).rstrip("0").rstrip(".") 
 
-                bot_message = "Name:\t{}\nSymbol:\t{}\nPrice:\t{} USD\nPhp:\t{} PHP".format(name, symbol.upper(), price, php)
+                bot_message = "Name:\t{}\nSymbol:\t{}\nPrice:\t{} USD\nPhp:\t{} PHP\nSource: Coingecko".format(name, symbol.upper(), price, php)
 
                 await message.reply(bot_message, mention_author=False)
 
