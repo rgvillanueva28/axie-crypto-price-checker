@@ -41,7 +41,16 @@ class MyClient(discord.Client):
 
                     bot_message = "Name:\t{}\nSymbol:\t{}\nPrice:\t{} USD\nPhp:\t{} PHP\nSource:\tCoingecko".format(name, symbol.upper(), price, php)
 
-                    await message.reply(bot_message, mention_author=False)
+                    title = f'{symbol.upper()}'
+                    description = f'{name}'
+                    color = discord.Color.green()
+                    
+                    bot_embed = discord.Embed(title=title, description=description, color=color)
+                    bot_embed.add_field(name="Price",value=f'$ {price}', inline=False)
+                    bot_embed.add_field(name="Php",value=f'₱ {php}', inline=False)
+                    bot_embed.set_footer(text="Source: Coingecko")
+
+                    await message.reply(embed=bot_embed, mention_author=False)
 
                 else:
                     await message.reply(f"{choice(unknown_coin)} {choice(unknown_coin_2)}", mention_author=False)
